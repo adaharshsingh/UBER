@@ -1,26 +1,46 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import axios from 'axios'
+import {UserDataContext}  from '../context/UserContext'
+import { useContext } from 'react';
+
+
 const UserSignup = () => {
     const[email, setEmail] = useState('')
     const[password, setPassword] = useState('')
     const[firstName, setFirstName] = useState('')
     const[lastName, setLastName] = useState('')
-    const [userData, setUserData] = useState({})
-    const submitHandler = (e)=>{e.preventDefault();
-        setUserData({
-            username:{
+
+
+    const navigate = useNavigate()
+    const { userData, setUserData } = useContext(UserDataContext)
+    
+    const submitHandler = async(e)=>{e.preventDefault();
+        const newUser={
+            fullName:{
                 firstName: firstName,
                 lastName: lastName
             },
             email: email,
             password: password       
-         })
+         }
+         const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
+
+         if (response.status ===201)
+            {
+            const data =response.data
+            setUserData(data.user)
+            localStorage.setItem('token'.data.token)
+
+            navigate('/home')
+            alert('User Created Successfully')
+            }
     setFirstName('')
     setLastName('')
     setEmail('')
     setPassword('')
-}
+    }
   return (
     <div className='p-7 h-screen flex-col flex justify-between'>
         <div>
