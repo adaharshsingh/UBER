@@ -7,6 +7,8 @@ const cors = require('cors');
 const connectToDb = require('./db/db');
 const userRoutes = require('./routes/user.routes');
 const capatinRoutes= require('./routes/captain.routes');
+const mapsRoutes = require('./routes/maps.routes.js');
+const RideRoutes = require('./routes/rides.routes.js');
 
 const app = express();
 
@@ -27,4 +29,6 @@ app.get('/', (req, res) => {
 
 app.use('/users', userRoutes);
 app.use('/captains',capatinRoutes);
+app.use('/maps', mapsRoutes);
+app.use('/rides', RideRoutes);
 module.exports = app;

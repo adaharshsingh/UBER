@@ -1,9 +1,10 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext,useContext } from 'react';
+
 export const CaptainDataContext = createContext();
 
 const CaptainContext = ({ children }) => {
     const [captainData, setCaptainData] = useState({
-        fullname: {
+        fullName: {
             firstName: "",
             lastName: ""
         },
@@ -16,6 +17,7 @@ const CaptainContext = ({ children }) => {
             vehicleType: ""
         }
     });
+
 
     return (
         <div>

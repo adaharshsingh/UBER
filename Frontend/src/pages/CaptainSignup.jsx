@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { CaptainDataContext } from '../context/captainContext'
+import { CaptainDataContext } from '../context/CaptainContext'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
